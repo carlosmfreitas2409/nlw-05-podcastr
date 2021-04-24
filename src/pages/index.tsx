@@ -10,7 +10,7 @@ import { api } from "../services/api";
 import { usePlayer } from "../hooks/PlayerContext";
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString";
 
-import styles from './home.module.scss';
+import { Container, LatestEpisodes, AllEpisodes } from "../styles/pages/Home";
 
 type Episodes = {
   id: string;
@@ -39,8 +39,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
         <title>Home | Podcastr</title>
       </Head>
 
-      <div className={styles.homepage}>
-        <section className={styles.latestEpisodes}>
+      <Container>
+        <LatestEpisodes>
           <h2>Últimos lançamentos</h2>
 
           <ul>
@@ -54,7 +54,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   objectFit="cover"
                 />
 
-                <div className={styles.episodeDetails}>
+                <div className="episodeDetails">
                   <Link href={`/episodes/${episode.id}`}>
                     <a>{episode.title}</a>
                   </Link>
@@ -69,9 +69,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
               </li>
             ))}
           </ul>
-        </section>
+        </LatestEpisodes>
 
-        <section className={styles.allEpisodes}>
+        <AllEpisodes>
           <h2>Todos episódios</h2>
 
           <table cellSpacing={0}>
@@ -118,8 +118,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
               ))}
             </tbody>
           </table>
-        </section>
-      </div>
+        </AllEpisodes>
+      </Container>
     </>
   )
 }
