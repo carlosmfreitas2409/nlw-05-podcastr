@@ -9,8 +9,8 @@ export const Container = styled.div`
   width: 26.5rem;
   height: 100vh;
 
-  background: var(--purple-500);
-  color: var(--white);
+  background: ${({ theme }) => theme.colors.primary.normal};
+  color: ${({ theme }) => theme.colors.white};
 
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ export const Container = styled.div`
   }
 
   strong {
-    font-family: 'Lexend', sans-serif;
+    font-family: ${({ theme }) => theme.font.title};
     font-weight: 600;
   }
 
@@ -47,7 +47,7 @@ export const CurrentEpisode = styled.div`
   strong {
     display: block;
     margin-top: 2rem;
-    font: 600 1.25rem 'Lexend', sans-serif;
+    font: 600 1.25rem ${({ theme }) => theme.font.title};
     line-height: 1.75rem;
   }
 
@@ -64,7 +64,7 @@ export const EmptyPlayer = styled.div`
   height: 20rem;
 
   background: linear-gradient(143.8deg, rgba(145, 100, 250, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-  border: 1.5px dashed var(--purple-300);
+  border: 1.5px dashed ${({ theme }) => theme.colors.primary.lighter};
   border-radius: 1.5rem;
 
   padding: 4rem;
@@ -93,7 +93,7 @@ export const Progress = styled.div`
     .emptySlider {
       width: 100%;
       height: 4px;
-      background: var(--purple-300);
+      background: ${({ theme }) => theme.colors.primary.lighter};
       border-radius: 2px;
     }
   }
@@ -105,10 +105,6 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   margin-top: 2.5rem;
   gap: 1.5rem;
-
-  button {
-    
-  }
 `;
 
 export const PlayerButton = styled.button<PlayerButtonProps>`
@@ -139,7 +135,7 @@ export const PlayerButton = styled.button<PlayerButtonProps>`
     width: 4rem;
     height: 4rem;
     border-radius: 1rem;
-    background: var(--purple-400);
+    background: ${({ theme }) => theme.colors.primary.light};
 
     &:hover:not(:disabled) {
       filter: brightness(0.95);

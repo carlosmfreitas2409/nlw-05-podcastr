@@ -4,7 +4,7 @@ import Slider from 'rc-slider';
 
 import 'rc-slider/assets/index.css';
 
-import { usePlayer } from '../../hooks/PlayerContext';
+import { usePlayer } from '../../hooks/usePlayer';
 
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 

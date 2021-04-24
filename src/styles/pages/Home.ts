@@ -19,8 +19,8 @@ export const LatestEpisodes = styled.section`
     gap: 1.5rem;
 
     li {
-      background: var(--white);
-      border: 1px solid var(--gray-100);
+      background: ${({ theme }) => theme.colors.tertiary};
+      border: 1px solid ${({ theme }) => theme.colors.background.light};
       padding: 1.25rem;
       border-radius: 1.5rem;
       position: relative;
@@ -41,8 +41,8 @@ export const LatestEpisodes = styled.section`
 
         a {
           display: block;
-          color: var(--gray-800);
-          font-family: 'Lexend', sans-serif;
+          color: ${({ theme }) => theme.colors.background.darker};
+          font-family: ${({ theme }) => theme.font.title};
           font-weight: 600;
           text-decoration: none;
           line-height: 1.4rem;
@@ -93,8 +93,8 @@ export const LatestEpisodes = styled.section`
 
         width: 2.5rem;
         height: 2.5rem;
-        background: var(--white);
-        border: 1px solid var(--gray-100);
+        background: ${({ theme }) => theme.colors.tertiary};
+        border: 1px solid ${({ theme }) => theme.colors.background.light};
         border-radius: 0.675rem;
         font-size: 0;
 
@@ -128,13 +128,13 @@ export const AllEpisodes = styled.section`
 
     th, td {
       padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--gray-100);
+      border-bottom: 1px solid ${({ theme }) => theme.colors.background.light};
     }
 
     th {
-      color: var(--gray-200);
+      color: ${({ theme }) => theme.colors.background.normal};
       text-transform: uppercase;
-      font: 500 0.75rem 'Lexend', sans-serif;
+      font: 500 0.75rem ${({ theme }) => theme.font.title};;
       text-align: left;
     }
 
@@ -148,8 +148,8 @@ export const AllEpisodes = styled.section`
       }
 
       a {
-        color: var(--gray-800);
-        font-family: 'Lexend', sans-serif;
+        color: ${({ theme }) => theme.colors.background.darker};
+        font-family: ${({ theme }) => theme.font.title};
         font-weight: 600;
         text-decoration: none;
         line-height: 1.4rem;
@@ -163,8 +163,8 @@ export const AllEpisodes = styled.section`
       button {
         width: 2rem;
         height: 2rem;
-        background: var(--white);
-        border: 1px solid var(--gray-100);
+        background: ${({ theme }) => theme.colors.tertiary};
+        border: 1px solid ${({ theme }) => theme.colors.background.light};
         border-radius: 0.5rem;
         font-size: 0;
 

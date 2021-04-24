@@ -7,7 +7,7 @@ import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { api } from "../services/api";
-import { usePlayer } from "../hooks/PlayerContext";
+import { usePlayer } from "../hooks/usePlayer";
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString";
 
 import { Container, LatestEpisodes, AllEpisodes } from "../styles/pages/Home";

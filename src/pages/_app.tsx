@@ -1,4 +1,4 @@
-import { PlayerProvider } from '../hooks/PlayerContext';
+import { AppProvider } from '../hooks';
 
 import { Header } from '../components/Header';
 import { Player } from '../components/Player';
@@ -8,7 +8,7 @@ import { Wrapper } from '../styles/pages/App';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <PlayerProvider>
+    <AppProvider>
       <Wrapper>
         <main>
           <Header />
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       </Wrapper>
 
       <GlobalStyle />
-    </PlayerProvider>
+    </AppProvider>
   );
 }
 
