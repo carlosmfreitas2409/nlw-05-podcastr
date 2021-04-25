@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Slider from 'rc-slider';
+import { FiChevronDown } from 'react-icons/fi';
 
 import 'rc-slider/assets/index.css';
 
 import { usePlayer } from '../../hooks/usePlayer';
+import { useDimensions } from '../../hooks/useDimensions';
 
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
@@ -19,7 +21,11 @@ import {
 
 export function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const playRef = useRef<HTMLButtonElement>(null);
   const [progress, setProgress] = useState(0);
+  const [isMobileShowing, setIsMobileShowing] = useState(false);
+
+  const { width } = useDimensions();
 
   const {
     episodeList,
@@ -71,34 +77,64 @@ export function Player() {
     }
   }
 
+  function handleMobilePlayer(event) {
+    if(playRef.current.contains(event.target)) {
+      event.stopPropagation();
+      return;
+    }
+
+    if(!isMobileShowing && width <= 425) {
+      setIsMobileShowing(true)
+    }
+  }
+
   const episode = episodeList[currentEpisodeIndex];
   
   return (
-    <Container>
+    <Container
+      onClick={(e) => handleMobilePlayer(e)}
+      isMobileShowing={isMobileShowing}
+      initial={{ height: '4.75rem' }}
+      animate={{ height: isMobileShowing || width > 1080 ? '100vh' : '4.75rem' }}
+      transition={{
+        type: 'spring',
+        stiffness: 500,
+        damping: 60,
+        mass: 2.5
+      }}
+    >
       <header>
+        {isMobileShowing &&
+          <button className="backButton" onClick={() => setIsMobileShowing(false)}>
+            <FiChevronDown size={32} color="#ffffff" />
+          </button>
+        }
+
         <img src="/playing.svg" alt="Tocando agora"/>
         <strong>Tocando agora</strong>
       </header>
 
       { episode ? (
-        <CurrentEpisode>
+        <CurrentEpisode isMobileShowing={isMobileShowing}>
           <Image
             width={592}
             height={592}
             src={episode.thumbnail}
             objectFit="cover"
           />
-          <strong>{episode.title}</strong>
-          <span>{episode.members}</span>
+          <div className="episodeDetails">
+            <strong>{episode.title}</strong>
+            <span>{episode.members}</span>
+          </div>
         </CurrentEpisode>
       ) : (
-        <EmptyPlayer>
+      <EmptyPlayer isMobileShowing={isMobileShowing}>
           <strong>Selecione um podcast para ouvir</strong>
         </EmptyPlayer>
       )}
 
       <footer className={!episode ? 'empty' : ''}>
-        <Progress>
+        <Progress isMobileShowing={isMobileShowing}>
           <span>{convertDurationToTimeString(progress)}</span>
           <div className="slider">
             { episode ? (
@@ -130,7 +166,7 @@ export function Player() {
           />
         )}
 
-        <ButtonsContainer>
+        <ButtonsContainer isMobileShowing={isMobileShowing}>
           <PlayerButton
             type="button"
             disabled={!episode || episodeList.length === 1}
@@ -149,6 +185,7 @@ export function Player() {
           </PlayerButton>
 
           <PlayerButton
+            ref={playRef}
             type="button"
             disabled={!episode}
             onClick={togglePlay}
