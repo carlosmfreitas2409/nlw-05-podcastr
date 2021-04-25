@@ -36,4 +36,22 @@ export const Container = styled.header`
       margin-right: 1.25rem;
     }
   }
+
+  @media (max-width: 810px) {
+    padding: 2rem 2.5rem;
+
+    p {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  @media (max-width: 425px) {
+    padding: 2rem 2rem;
+
+    time {
+      display: none;
+      visibility: hidden;
+    }
+  }
 `;
